@@ -1,0 +1,22 @@
+version: '2'
+services:
+  jira-node2:
+    image: atlassian/jira-software:8.13.7
+    container_name: jira-software-node2
+    network_mode: host
+    volumes:
+    - /mnt/prod-jira-data/:/var/atlassian/application-data/jira/shared
+    environment:
+      CLUSTERED: "true"
+      JIRA_SHARED_HOME: /var/atlassian/application-data/jira/shared
+      JIRA_NODE_ID: node2
+      EHCACHE_LISTENER_HOSTNAME: node2
+      EHCACHE_LISTENER_PORT: 40002
+      EHCACHE_OBJECT_PORT: 40012
+      EHCACHE_PEER_DISCOVERY: default
+      ATL_JDBC_URL: jdbc:postgresql://db-ip-address:5432/jiradb
+      ATL_JDBC_USER: jiradb_user
+      ATL_JDBC_PASSWORD: myjiradbpassword
+      ATL_DB_DRIVER: org.postgresql.Driver
+      ATL_DB_TYPE: postgres72
+      ATL_DB_SCHEMA_NAME: public

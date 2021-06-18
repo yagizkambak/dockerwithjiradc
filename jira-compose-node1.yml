@@ -1,0 +1,16 @@
+version: '2'
+services:
+  jira-node1:
+    image: atlassian/jira-software:8.13.7
+    container_name: jira-software-node1
+    network_mode: host
+    volumes:
+    - /mnt/prod-jira-data/:/var/atlassian/application-data/jira/shared
+    environment:
+      CLUSTERED: "true"
+      JIRA_SHARED_HOME: /var/atlassian/application-data/jira/shared
+      JIRA_NODE_ID: node1
+      EHCACHE_LISTENER_HOSTNAME: node1
+      EHCACHE_LISTENER_PORT: 40002
+      EHCACHE_OBJECT_PORT: 40012
+      EHCACHE_PEER_DISCOVERY: default
